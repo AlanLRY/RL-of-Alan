@@ -640,7 +640,7 @@ num_steps = 300
 num_nodes = 6
 num_weights = 7
 
-# 随机生成权重数据（示例）
+
 phi_c_all = phi_c_all
 phi_a_all = np.array(phi_a_all)
 
@@ -700,63 +700,63 @@ axs[1].set_xticklabels(np.arange(0, 31, 3))  # 每 2 步一个标签
 plt.tight_layout()
 plt.savefig('fig6.eps', format='eps', dpi=300)  # 增加 dpi 参数来提高图像的清晰度
 plt.show()
-####fig7
-####fig7
-####fig7
-# 绘制 phi_a_all 的权重变化曲线
-#plot_weight_changes_norma(phi_a_all, num_steps, num_nodes, num_weights)
-# 限制 num_steps 为 200
-step_interval = 1
-num_steps = 300  # 限制为前200步的数据
-num_weights = phi_a_all.shape[2]  # 权重的数量
+# ####fig7
+# ####fig7
+# ####fig7
+# # 绘制 phi_a_all 的权重变化曲线
+# #plot_weight_changes_norma(phi_a_all, num_steps, num_nodes, num_weights)
+# # 限制 num_steps 为 200
+# step_interval = 1
+# num_steps = 300  # 限制为前200步的数据
+# num_weights = phi_a_all.shape[2]  # 权重的数量
 
-# 提取节点1和节点6的权重数据
-weights_data_node_1 = phi_a_all[:num_steps, 0, :]  # 节点1的权重数据
-weights_data_node_6 = phi_a_all[:num_steps, 4, :]  # 节点6的权重数据
+# # 提取节点1和节点6的权重数据
+# weights_data_node_1 = phi_a_all[:num_steps, 0, :]  # 节点1的权重数据
+# weights_data_node_6 = phi_a_all[:num_steps, 4, :]  # 节点6的权重数据
 
-# 确保权重的收敛值最终为0
-weights_data_node_1 -= weights_data_node_1[-1, :]
-weights_data_node_6 -= weights_data_node_6[-1, :]
+# # 确保权重的收敛值最终为0
+# weights_data_node_1 -= weights_data_node_1[-1, :]
+# weights_data_node_6 -= weights_data_node_6[-1, :]
 
-# 创建图形和两个子图
-fig, axs = plt.subplots(2, 1, figsize=(12, 16))
+# # 创建图形和两个子图
+# fig, axs = plt.subplots(2, 1, figsize=(12, 16))
 
-# 绘制节点1的每个权重的变化曲线
-for weight_index in range(num_weights):
-    weight_values = weights_data_node_1[:, weight_index]
-    steps = np.arange(num_steps)
-    axs[0].plot(steps, weight_values, label=f'Weight {weight_index + 1}')
+# # 绘制节点1的每个权重的变化曲线
+# for weight_index in range(num_weights):
+#     weight_values = weights_data_node_1[:, weight_index]
+#     steps = np.arange(num_steps)
+#     axs[0].plot(steps, weight_values, label=f'Weight {weight_index + 1}')
 
-# 设置节点1子图的标题和标签
-axs[0].set_title('Node 1')
-axs[0].set_xlabel('Time')
-axs[0].set_ylabel('Action Weight')
-axs[0].legend()
-axs[0].grid(True)  # 添加网格线以便于观察收敛
-axs[0].set_xlim(0, 300)
-axs[0].set_xticks(np.linspace(0, 300, 11))
-axs[0].set_xticklabels(np.arange(0, 31, 3))  # 每 2 步一个标签
+# # 设置节点1子图的标题和标签
+# axs[0].set_title('Node 1')
+# axs[0].set_xlabel('Time')
+# axs[0].set_ylabel('Action Weight')
+# axs[0].legend()
+# axs[0].grid(True)  # 添加网格线以便于观察收敛
+# axs[0].set_xlim(0, 300)
+# axs[0].set_xticks(np.linspace(0, 300, 11))
+# axs[0].set_xticklabels(np.arange(0, 31, 3))  # 每 2 步一个标签
 
-# 绘制节点6的每个权重的变化曲线
-for weight_index in range(num_weights):
-    weight_values = weights_data_node_6[:, weight_index]
-    steps = np.arange(num_steps)
-    axs[1].plot(steps, weight_values, label=f'Weight {weight_index + 1}')
+# # 绘制节点6的每个权重的变化曲线
+# for weight_index in range(num_weights):
+#     weight_values = weights_data_node_6[:, weight_index]
+#     steps = np.arange(num_steps)
+#     axs[1].plot(steps, weight_values, label=f'Weight {weight_index + 1}')
 
-# 设置节点6子图的标题和标签
-axs[1].set_title('Node 5')
-axs[1].set_xlabel('Time')
-axs[1].set_ylabel('Action Value')
-axs[1].legend()
-axs[1].grid(True)  # 添加网格线以便于观察收敛
-axs[1].set_xlim(0, 300)
-axs[1].set_xticks(np.linspace(0, 300, 11))
-axs[1].set_xticklabels(np.arange(0, 31, 3))  # 每 2 步一个标签
+# # 设置节点6子图的标题和标签
+# axs[1].set_title('Node 5')
+# axs[1].set_xlabel('Time')
+# axs[1].set_ylabel('Action Value')
+# axs[1].legend()
+# axs[1].grid(True)  # 添加网格线以便于观察收敛
+# axs[1].set_xlim(0, 300)
+# axs[1].set_xticks(np.linspace(0, 300, 11))
+# axs[1].set_xticklabels(np.arange(0, 31, 3))  # 每 2 步一个标签
 
-# 调整布局
-plt.tight_layout()
-plt.savefig('fig7.eps', format='eps', dpi=300)  # 增加 dpi 参数来提高图像的清晰度
-plt.show()
+# # 调整布局
+# plt.tight_layout()
+# plt.savefig('fig7.eps', format='eps', dpi=300)  # 增加 dpi 参数来提高图像的清晰度
+# plt.show()
 ####fig5
 ####fig5
 ####fig5
